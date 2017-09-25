@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:stream="http://www.springframework.org/schema/integration/stream"
+	xmlns:int-kafka="http://www.springframework.org/schema/integration/kafka"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration/stream http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd
+		http://www.springframework.org/schema/integration/kafka http://www.springframework.org/schema/integration/kafka/spring-integration-kafka.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<int:channel id="inputFromKafka" >
+		<int:queue/>
+	</int:channel>
+	<int:channel id="inputFromTransformer"/>
+ 
+	<int-kafka:zookeeper-connect id="zookeeperConnect" zk-connect="10.217.172.137:2181"
+			zk-connection-timeout="6000" 
+			zk-session-timeout="6000"
+			zk-sync-time="2000"/>
+
+	<int-kafka:inbound-channel-adapter id="kafkaInboundChannelAdapter"
+			kafka-consumer-context-ref="consumerContext"
+			auto-startup="false"
+			channel="inputFromKafka">
+		<int:poller fixed-delay="1" time-unit="MILLISECONDS"/>
+	</int-kafka:inbound-channel-adapter>
+ 
+
+	<bean id="consumerProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property  name="properties">
+			<props>
+				<prop key="auto.offset.reset">smallest</prop>
+				<prop key="socket.receive.buffer.bytes">10485760</prop> <!-- 10M -->
+				<prop key="fetch.message.max.bytes">5242880</prop>
+				<prop key="auto.commit.interval.ms">1000</prop>
+			</props>
+		</property>
+	</bean>
+
+	<int-kafka:consumer-context id="consumerContext"
+			consumer-timeout="1000"
+			zookeeper-connect="zookeeperConnect" consumer-properties="consumerProperties">
+		<int-kafka:consumer-configurations>
+			<int-kafka:consumer-configuration group-id="default1" 
+								max-messages="5000">
+				<int-kafka:topic id="event-stream" streams="4"/>
+			</int-kafka:consumer-configuration>
+			<int-kafka:consumer-configuration group-id="default2"
+					max-messages="50">
+			<int-kafka:topic id="test2" streams="3"/>
+			</int-kafka:consumer-configuration>
+			<int-kafka:consumer-configuration group-id="default3"
+					max-messages="10">
+				<int-kafka:topic-filter pattern="regextopic.*" streams="2" exclude="false"/>
+			</int-kafka:consumer-configuration>
+		</int-kafka:consumer-configurations>
+	</int-kafka:consumer-context>
+  
+</beans>
