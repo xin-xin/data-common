@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.cassandra.mapping.Column;
 import org.springframework.data.cassandra.mapping.PrimaryKey;
@@ -11,12 +12,14 @@ import org.springframework.data.cassandra.mapping.Table;
 
 @Table(value = "twitter_user")
 public class TwitterUser {
+	@Transient
+	private Logger log = Logger.getLogger(this.getClass());
 	@PrimaryKey
 	private long id;
 	@Column(value = "name")
 	private String name;
 	@Column(value = "screen_name")
-	private String screen_name;
+	private String screenName;
 	@Column(value = "location")
 	private String location;
 	@Column(value = "url")
@@ -24,74 +27,73 @@ public class TwitterUser {
 	@Column(value = "description")
 	private String description;
 	@Column(value = "protected")
-	private boolean _protected;
+	private boolean bProtected;
 	@Column(value = "followers_count")
-	private long followers_count;
+	private long followersCount;
 	@Column(value = "friends_count")
-	private long friends_count;
+	private long friendsCount;
 	@Column(value = "listed_count")
-	private long listed_count;
+	private long listedCount;
 	@Column(value = "created_time")
-	private Date created_time;
+	private Date createdTime;
 	@Transient
-	private String created_at;
+	private String createdAt;
 	@Column(value = "favourites_count")
-	private long favourites_count;
+	private long favouritesCount;
 	@Column(value = "utc_offset")
-	private String utc_offset;
+	private String utcOffset;
 	@Column(value = "time_zone")
-	private String time_zone;
+	private String timeZone;
 	@Column(value = "geo_enabled")
-	private boolean geo_enabled;
+	private boolean geoEnabled;
 	@Column(value = "verified")
 	private boolean verified;
 	@Column(value = "statuses_count")
-	private long statuses_count;
+	private long statusesCount;
 	@Column(value = "lang")
 	private String lang;
 	@Column(value = "contributors_enabled")
-	private boolean contributors_enabled;
+	private boolean contributorsEnabled;
 	@Column(value = "is_translator")
-	private boolean is_translator;
+	private boolean isTranslator;
 	@Column(value = "is_translation_enabled")
-	private boolean is_translation_enabled;
+	private boolean isTranslationEnabled;
 	@Column(value = "profile_background_color")
-	private String profile_background_color;
+	private String profileBackgroundColor;
 	@Column(value = "profile_background_image_url")
-	private String profile_background_image_url;
+	private String profileBackgroundImageUrl;
 	@Column(value = "profile_background_image_url_https")
-	private String profile_background_image_url_https;
+	private String profileBackgroundImageUrlHttps;
 	@Column(value = "profile_background_tile")
-	private boolean profile_background_tile;
+	private boolean profileBackgroundTile;
 	@Column(value = "profile_image_url")
-	private String profile_image_url;
+	private String profileImageUrl;
 	@Column(value = "profile_image_url_https")
-	private String profile_image_url_https;
+	private String profileImageUrlHttps;
 	@Column(value = "profile_link_color")
-	private String profile_link_color;
+	private String profileLinkColor;
 	@Column(value = "profile_sidebar_border_color")
-	private String profile_sidebar_border_color;
+	private String profileSidebarBorderColor;
 	@Column(value = "profile_sidebar_fill_color")
-	private String profile_sidebar_fill_color;
+	private String profileSidebarFillColor;
 	@Column(value = "profile_text_color")
-	private String profile_text_color;
+	private String profileTextColor;
 	@Column(value = "profile_use_background_image")
-	private boolean profile_use_background_image;
+	private boolean profileUseBackgroundImage;
 	@Column(value = "default_profile")
-	private boolean default_profile;
+	private boolean defaultProfile;
 	@Column(value = "default_profile_image")
-	private boolean default_profile_image;
+	private boolean defaultProfileImage;
 	@Column(value = "following")
 	private String following;
 	@Column(value = "follow_request_sent")
-	
-	private boolean follow_request_sent;
+	private boolean followRequestSent;
 	@Column(value = "notifications")
 	private String notifications;
 	@Column(value = "captured_at")
-	private Date captured_at;
+	private Date capturedAt;
 	@Column(value = "last_updated")
-	private Date last_updated;
+	private Date lastUpdated;
 
 	public String getName() {
 		return name;
@@ -101,12 +103,12 @@ public class TwitterUser {
 		this.name = name;
 	}
 
-	public String getScreen_name() {
-		return screen_name;
+	public String getScreenName() {
+		return screenName;
 	}
 
-	public void setScreen_name(String screen_name) {
-		this.screen_name = screen_name;
+	public void setScreenName(String screenName) {
+		this.screenName = screenName;
 	}
 
 	public String getLocation() {
@@ -133,68 +135,68 @@ public class TwitterUser {
 		this.description = description;
 	}
 
-	public boolean is_protected() {
-		return _protected;
+	public boolean isProtected() {
+		return bProtected;
 	}
 
-	public void set_protected(boolean _protected) {
-		this._protected = _protected;
+	public void setProtected(boolean bProtected) {
+		this.bProtected = bProtected;
 	}
 
-	public long getFollowers_count() {
-		return followers_count;
+	public long getFollowersCount() {
+		return followersCount;
 	}
 
-	public void setFollowers_count(long followers_count) {
-		this.followers_count = followers_count;
+	public void setFollowersCount(long followersCount) {
+		this.followersCount = followersCount;
 	}
 
-	public long getFriends_count() {
-		return friends_count;
+	public long getFriendsCount() {
+		return friendsCount;
 	}
 
-	public void setFriends_count(long friends_count) {
-		this.friends_count = friends_count;
+	public void setFriendsCount(long friendsCount) {
+		this.friendsCount = friendsCount;
 	}
 
-	public long getListed_count() {
-		return listed_count;
+	public long getListedCount() {
+		return listedCount;
 	}
 
-	public void setListed_count(long listed_count) {
-		this.listed_count = listed_count;
+	public void setListedCount(long listedCount) {
+		this.listedCount = listedCount;
 	}
 
-	public long getFavourites_count() {
-		return favourites_count;
+	public long getFavouritesCount() {
+		return favouritesCount;
 	}
 
-	public void setFavourites_count(long favourites_count) {
-		this.favourites_count = favourites_count;
+	public void setFavouritesCount(long favouritesCount) {
+		this.favouritesCount = favouritesCount;
 	}
 
-	public String getUtc_offset() {
-		return utc_offset;
+	public String getUtcOffset() {
+		return utcOffset;
 	}
 
-	public void setUtc_offset(String utc_offset) {
-		this.utc_offset = utc_offset;
+	public void setUtcOffset(String utcOffset) {
+		this.utcOffset = utcOffset;
 	}
 
-	public String getTime_zone() {
-		return time_zone;
+	public String getTimeZone() {
+		return timeZone;
 	}
 
-	public void setTime_zone(String time_zone) {
-		this.time_zone = time_zone;
+	public void setTimeZone(String timeZone) {
+		this.timeZone = timeZone;
 	}
 
-	public boolean isGeo_enabled() {
-		return geo_enabled;
+	public boolean isGeoEnabled() {
+		return geoEnabled;
 	}
 
-	public void setGeo_enabled(boolean geo_enabled) {
-		this.geo_enabled = geo_enabled;
+	public void setGeoEnabled(boolean geoEnabled) {
+		this.geoEnabled = geoEnabled;
 	}
 
 	public boolean isVerified() {
@@ -205,12 +207,12 @@ public class TwitterUser {
 		this.verified = verified;
 	}
 
-	public long getStatuses_count() {
-		return statuses_count;
+	public long getStatusesCount() {
+		return statusesCount;
 	}
 
-	public void setStatuses_count(long statuses_count) {
-		this.statuses_count = statuses_count;
+	public void setStatusesCount(long statusesCount) {
+		this.statusesCount = statusesCount;
 	}
 
 	public String getLang() {
@@ -221,136 +223,132 @@ public class TwitterUser {
 		this.lang = lang;
 	}
 
-	public boolean isContributors_enabled() {
-		return contributors_enabled;
+	public boolean isContributorsEnabled() {
+		return contributorsEnabled;
 	}
 
-	public void setContributors_enabled(boolean contributors_enabled) {
-		this.contributors_enabled = contributors_enabled;
+	public void setContributorsEnabled(boolean contributorsEnabled) {
+		this.contributorsEnabled = contributorsEnabled;
 	}
 
-	public boolean isIs_translator() {
-		return is_translator;
+	public boolean isIsTranslator() {
+		return isTranslator;
 	}
 
-	public void setIs_translator(boolean is_translator) {
-		this.is_translator = is_translator;
+	public void setIsTranslator(boolean isTranslator) {
+		this.isTranslator = isTranslator;
 	}
 
-	public boolean isIs_translation_enabled() {
-		return is_translation_enabled;
+	public boolean isIsTranslationEnabled() {
+		return isTranslationEnabled;
 	}
 
-	public void setIs_translation_enabled(boolean is_translation_enabled) {
-		this.is_translation_enabled = is_translation_enabled;
+	public void setIsTranslationEnabled(boolean isTranslationEnabled) {
+		this.isTranslationEnabled = isTranslationEnabled;
 	}
 
-	public String getProfile_background_color() {
-		return profile_background_color;
+	public String getProfileBackgroundColor() {
+		return profileBackgroundColor;
 	}
 
-	public void setProfile_background_color(String profile_background_color) {
-		this.profile_background_color = profile_background_color;
+	public void setProfileBackgroundColor(String profileBackgroundColor) {
+		this.profileBackgroundColor = profileBackgroundColor;
 	}
 
-	public String getProfile_background_image_url() {
-		return profile_background_image_url;
+	public String getProfileBackgroundImageUrl() {
+		return profileBackgroundImageUrl;
 	}
 
-	public void setProfile_background_image_url(
-			String profile_background_image_url) {
-		this.profile_background_image_url = profile_background_image_url;
+	public void setProfileBackgroundImageUrl(String profileBackgroundImageUrl) {
+		this.profileBackgroundImageUrl = profileBackgroundImageUrl;
 	}
 
-	public String getProfile_background_image_url_https() {
-		return profile_background_image_url_https;
+	public String getProfileBackgroundImageUrlHttps() {
+		return profileBackgroundImageUrlHttps;
 	}
 
-	public void setProfile_background_image_url_https(
-			String profile_background_image_url_https) {
-		this.profile_background_image_url_https = profile_background_image_url_https;
+	public void setProfileBackgroundImageUrlHttps(String profileBackgroundImageUrlHttps) {
+		this.profileBackgroundImageUrlHttps = profileBackgroundImageUrlHttps;
 	}
 
-	public boolean isProfile_background_tile() {
-		return profile_background_tile;
+	public boolean isProfileBackgroundTile() {
+		return profileBackgroundTile;
 	}
 
-	public void setProfile_background_tile(boolean profile_background_tile) {
-		this.profile_background_tile = profile_background_tile;
+	public void setProfileBackgroundTile(boolean profileBackgroundTile) {
+		this.profileBackgroundTile = profileBackgroundTile;
 	}
 
-	public String getProfile_image_url() {
-		return profile_image_url;
+	public String getProfileImageUrl() {
+		return profileImageUrl;
 	}
 
-	public void setProfile_image_url(String profile_image_url) {
-		this.profile_image_url = profile_image_url;
+	public void setProfileImageUrl(String profileImageUrl) {
+		this.profileImageUrl = profileImageUrl;
 	}
 
-	public String getProfile_image_url_https() {
-		return profile_image_url_https;
+	public String getProfileImageUrlHttps() {
+		return profileImageUrlHttps;
 	}
 
-	public void setProfile_image_url_https(String profile_image_url_https) {
-		this.profile_image_url_https = profile_image_url_https;
+	public void setProfileImageUrlHttps(String profileImageUrlHttps) {
+		this.profileImageUrlHttps = profileImageUrlHttps;
 	}
 
-	public String getProfile_link_color() {
-		return profile_link_color;
+	public String getProfileLinkColor() {
+		return profileLinkColor;
 	}
 
-	public void setProfile_link_color(String profile_link_color) {
-		this.profile_link_color = profile_link_color;
+	public void setProfileLinkColor(String profileLinkColor) {
+		this.profileLinkColor = profileLinkColor;
 	}
 
-	public String getProfile_sidebar_border_color() {
-		return profile_sidebar_border_color;
+	public String getProfileSidebarBorderColor() {
+		return profileSidebarBorderColor;
 	}
 
-	public void setProfile_sidebar_border_color(
-			String profile_sidebar_border_color) {
-		this.profile_sidebar_border_color = profile_sidebar_border_color;
+	public void setProfileSidebarBorderColor(String profileSidebarBorderColor) {
+		this.profileSidebarBorderColor = profileSidebarBorderColor;
 	}
 
-	public String getProfile_sidebar_fill_color() {
-		return profile_sidebar_fill_color;
+	public String getProfileSidebarFillColor() {
+		return profileSidebarFillColor;
 	}
 
-	public void setProfile_sidebar_fill_color(String profile_sidebar_fill_color) {
-		this.profile_sidebar_fill_color = profile_sidebar_fill_color;
+	public void setProfileSidebarFillColor(String profileSidebarFillColor) {
+		this.profileSidebarFillColor = profileSidebarFillColor;
 	}
 
-	public String getProfile_text_color() {
-		return profile_text_color;
+	public String getProfileTextColor() {
+		return profileTextColor;
 	}
 
-	public void setProfile_text_color(String profile_text_color) {
-		this.profile_text_color = profile_text_color;
+	public void setProfileTextColor(String profileTextColor) {
+		this.profileTextColor = profileTextColor;
 	}
 
-	public boolean isProfile_use_background_image() {
-		return profile_use_background_image;
+	public boolean isProfileUseBackgroundImage() {
+		return profileUseBackgroundImage;
 	}
 
-	public void setProfile_use_background_image(
-			boolean profile_use_background_image) {
-		this.profile_use_background_image = profile_use_background_image;
+	public void setProfileUseBackgroundImage(boolean profileUseBackgroundImage) {
+		this.profileUseBackgroundImage = profileUseBackgroundImage;
 	}
 
-	public boolean isDefault_profile() {
-		return default_profile;
+	public boolean isDefaultProfile() {
+		return defaultProfile;
 	}
 
-	public void setDefault_profile(boolean default_profile) {
-		this.default_profile = default_profile;
+	public void setDefaultProfile(boolean defaultProfile) {
+		this.defaultProfile = defaultProfile;
 	}
 
-	public boolean isDefault_profile_image() {
-		return default_profile_image;
+	public boolean isDefaultProfileImage() {
+		return defaultProfileImage;
 	}
 
-	public void setDefault_profile_image(boolean default_profile_image) {
-		this.default_profile_image = default_profile_image;
+	public void setDefaultProfileImage(boolean defaultProfileImage) {
+		this.defaultProfileImage = defaultProfileImage;
 	}
 
 	public String getFollowing() {
@@ -361,12 +359,12 @@ public class TwitterUser {
 		this.following = following;
 	}
 
-	public boolean getFollow_request_sent() {
-		return follow_request_sent;
+	public boolean getFollowRequestSent() {
+		return followRequestSent;
 	}
 
-	public void setFollow_request_sent(boolean follow_request_sent) {
-		this.follow_request_sent = follow_request_sent;
+	public void setFollowRequestSent(boolean followRequestSent) {
+		this.followRequestSent = followRequestSent;
 	}
 
 	public String getNotifications() {
@@ -377,12 +375,12 @@ public class TwitterUser {
 		this.notifications = notifications;
 	}
 
-	public Date getLast_updated() {
-		return last_updated;
+	public Date getLastUpdated() {
+		return lastUpdated;
 	}
 
-	public void setLast_updated(Date last_updated) {
-		this.last_updated = last_updated;
+	public void setLastUpdated(Date lastUpdated) {
+		this.lastUpdated = lastUpdated;
 	}
 
 	public long getId() {
@@ -393,35 +391,36 @@ public class TwitterUser {
 		this.id = id;
 	}
 
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
 
-	public Date getCreated_time() {
-		return created_time;
+	public Date getCreatedTime() {
+		return createdTime;
 	}
 
-	public void setCreated_time(Date created_time) {
-		this.created_time = created_time;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
 
-	public void setCaptured_at(Date captured_at) {
-		this.captured_at = captured_at;
+	public void setCapturedAt(Date capturedAt) {
+		this.capturedAt = capturedAt;
 	}
 
-	public Date getCaptured_at() {
-		return captured_at;
+	public Date getCapturedAt() {
+		return capturedAt;
 	}
 
-	public String getCreated_at() {
-		return created_at;
+	public String getCreatedAt() {
+		return createdAt;
 	}
 
 	public void convertType() {
 		SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM d HH:mm:ss Z yyyy");
 		try {
-			this.created_time = new Timestamp(sdf.parse(created_at).getTime());
+			this.createdTime = new Timestamp(sdf.parse(createdAt).getTime());
 		} catch (Exception e) {
+			log.error("Convert timestamp error.", e);
 		}
 	}
 }

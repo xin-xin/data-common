@@ -15,7 +15,6 @@ import data.common.util.JsonUtil;
 public class MonitorThread implements Runnable {
 	private String module = null;
 	private Logger log = Logger.getLogger(MonitorThread.class);
-	//private final Gson gson = new GsonBuilder().create();
 
 	public MonitorThread(String module) {
 		this.module = module;
@@ -25,12 +24,9 @@ public class MonitorThread implements Runnable {
 		try {
 			log.debug("Monitor thread started.");
 			Runtime runtime = Runtime.getRuntime();
-			//log.debug("Got current JVM runtime.");
 			ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 					"database-default.xml");
-			//log.debug("Got spring context.");
 			BenchmarkRepository br = context.getBean(BenchmarkRepository.class);
-			//log.debug("Got repository bean.");
 			Benchmark b = new Benchmark();
 			b.setAllocated_mem(runtime.totalMemory());
 			b.setFree_mem(runtime.freeMemory());
@@ -41,12 +37,9 @@ public class MonitorThread implements Runnable {
 //			}
 			//b.setQueue(gson.toJson(queues));
 			b.setQueue(JsonUtil.toJson(queues));
-			//log.debug(b.getQueue());
 			b.setCreated_at(new Timestamp((new Date()).getTime()));
 			b.setModule(this.module);
-			//log.debug("Set entity bean value.");
 			br.save(b);
-			//log.debug("Saved entity bean.");
 			context.close();
 			log.debug("Monitor thread stopped.");
 		} catch (Exception ex) {

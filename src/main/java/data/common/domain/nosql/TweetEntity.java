@@ -2,7 +2,7 @@ package data.common.domain.nosql;
 
 public class TweetEntity {
 	private TweetHashtag[] hashtags;
-	private TweetUserMention[] user_mentions;
+	private TweetUserMention[] userMentions;
 
 	public TweetHashtag[] getHashtags() {
 		return hashtags;
@@ -12,11 +12,11 @@ public class TweetEntity {
 		this.hashtags = hashtags;
 	}
 
-	public TweetUserMention[] getUser_mentions() {
-		return user_mentions;
+	public TweetUserMention[] getUserMentions() {
+		return userMentions;
 	}
 
-	public void setUser_mentions(TweetUserMention[] user_mentions) {
-		this.user_mentions = user_mentions;
+	public void setUserMentions(TweetUserMention[] userMentions) {
+		this.userMentions = userMentions;
 	}
 }

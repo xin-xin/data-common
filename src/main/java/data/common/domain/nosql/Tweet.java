@@ -44,8 +44,6 @@ public class Tweet {
 	private Coordinate coordinates;
 	@Column(value = "coordinates_str")
 	private String coordinates_str;
-	// @Transient
-	// private String place;
 	@Column(value = "contributors")
 	private String contributors;
 	@Column(value = "retweet_count")
@@ -312,7 +310,7 @@ public class Tweet {
 		} catch (Exception e) {
 		}
 		this.userid = this.user.getId();
-		this.screen_name = this.user.getScreen_name();
+		this.screen_name = this.user.getScreenName();
 		this.geo_str = JsonUtil.toJson(this.geo);
 		this.coordinates_str = JsonUtil.toJson(this.coordinates);
 	}
